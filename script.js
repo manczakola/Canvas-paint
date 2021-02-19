@@ -1,5 +1,5 @@
      this.controlsDiv = document.querySelector('.controls');
-   
+
      class Paint {
          constructor() {
              this.canvas = document.getElementById('canvas');
@@ -44,6 +44,8 @@
              this.modeBtn.filter(el => {
                  return el.dataset.mode === "draw";
              })[0].classList.add('active');
+
+             this.clearCanvas = document.querySelector('.clear');
          }
 
          setupContext() {
@@ -61,6 +63,13 @@
              this.sizeElement.addEventListener('change', this.changeSize.bind(this));
              this.colorElement.forEach(el => el.addEventListener('click', this.changeColor.bind(this)));
 
+             this.clearCanvas.addEventListener('click', () => {
+
+                 console.log('clear');
+                 this.context.clearRect(0, 0, this.canvas2.width, this.canvas2.height)
+                 this.context2.clearRect(0, 0, this.canvas2.width, this.canvas2.height)
+             })
+
              this.canvas.addEventListener('mousemove', this.mouseMove.bind(this));
              this.canvas.addEventListener('touchmove', this.mouseMove.bind(this));
 
@@ -75,7 +84,7 @@
              for (let i = 0; i <= this.modeBtn.length; i++) {
                  this.modeBtn.forEach(el => {
                      el.addEventListener('click', (e) => {
-               
+
                          e.target.classList.add('active');
                          this.mode = e.target.dataset.mode;
                          if (el !== e.target) {
@@ -156,7 +165,7 @@
 
 
                  if (this.mode === 'rectangle') {
-   
+
                      this.context2.clearRect(0, 0, this.canvas2.width, this.canvas2.height);
                      this.context2.beginPath();
                      this.context2.moveTo(this.startX, this.startY);
