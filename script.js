@@ -65,7 +65,6 @@
 
              this.clearCanvas.addEventListener('click', () => {
 
-                 console.log('clear');
                  this.context.clearRect(0, 0, this.canvas2.width, this.canvas2.height)
                  this.context2.clearRect(0, 0, this.canvas2.width, this.canvas2.height)
              })
